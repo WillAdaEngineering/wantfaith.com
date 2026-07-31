@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Scene -->
+    <div class="wrapper">
+
+        <!-- Sky Scene -->
+        <div class="sky"></div>
+
+        <!-- Floating Pollen -->
+        <div id="particles"></div>
+
+        <div id="finalMessage">
+                I love you Faith
+            </div>
+        <!-- Dialogue Box -->
+        <div class="dialogue">
+
+            <div class="typing-demo" id="typingText"
+                data-text="Faith. Will You Be My Girlfriend?">
+            </div>
+
+            <div id="memoryContainer"></div>
+
+            <div class="choices">
+                <div class="option" id="yesButton">
+                    <div class="box"></div>
+                    <span>Yes</span>
+                </div>
+
+                <div class="option" id="noButton">
+                    <div class="box"></div>
+                    <span>No</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="typingSound" preload="auto">
+        <source src="audio/type.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="selectSound" preload="auto">
+        <source src="audio/select.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="birds" loop preload="auto">
+        <source src="audio/birds.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="noSound" preload="auto">
+        <source src="audio/no.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

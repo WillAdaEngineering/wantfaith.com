@@ -1,0 +1,384 @@
+/* ===========================
+GENERAL PAGE
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+/* ===========================
+BACKGROUND
+=========================== */
+.wrapper {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    background-image: url("images/sunflowerbackground.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: grayscale(100%);
+
+    transition: filter 5s ease;
+
+    overflow: hidden;
+}
+
+.wrapper.colorized {
+    filter: grayscale(0%);
+}
+
+/* ===========================
+SKY FADE OVERLAY
+=========================== */
+.sky {
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+        to bottom,
+        #87CEEB,
+        #fff2c4
+    );
+
+    opacity:0;
+
+    transition:
+    opacity 5s ease;
+
+    z-index:0;
+}
+
+.wrapper.colorized .sky {
+    opacity:.45;
+}
+
+/* ===========================
+DIALOGUE
+=========================== */
+.dialogue {
+    position:relative;
+    text-align:center;
+    z-index:10;
+}
+
+/* ===========================
+TYPEWRITER TEXT
+=========================== */
+.typing-demo {
+    white-space:nowrap;
+    overflow:hidden;
+    font-size:2rem;
+    border-right:3px solid black;
+    user-select:none;
+
+    animation:
+    blink .5s step-end infinite alternate;
+}
+
+@keyframes blink {
+    50% {
+        border-color:transparent;
+    }
+}
+
+/* ===========================
+TEXT FADE OUT
+=========================== */
+.textFade {
+    animation:
+    fadeTextOut 2s forwards;
+}
+
+@keyframes fadeTextOut {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+
+/* ===========================
+YES / NO MENU
+=========================== */
+.choices {
+    display:flex;
+    justify-content:center;
+    gap:70px;
+    margin-top:50px;
+}
+
+.option {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    user-select:none;
+    transition:.25s ease;
+}
+
+.option:hover {
+    cursor:pointer;
+    transform:scale(1.08);
+}
+
+.box {
+    width:24px;
+    height:24px;
+    border:3px solid black;
+    transition:.25s ease;
+}
+
+.option:hover .box {
+    background:black;
+}
+
+/* Hidden choices */
+.hidden {
+    opacity:0;
+}
+
+/* Choice fade in */
+.show {
+    animation:
+    fadeIn .8s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity:0;
+
+        transform:
+        translateY(10px);
+    }
+    to {
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
+
+/* Menu disappearing */
+.menuFade {
+    animation:
+    menuDisappear .6s forwards;
+}
+
+@keyframes menuDisappear {
+    to {
+        opacity:0;
+
+        transform:
+        translateY(-10px);
+    }
+}
+
+/* ===========================
+POLAROID MEMORY SYSTEM
+=========================== */
+#memoryContainer {
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:15;
+}
+
+.memoryPhoto {
+    position:absolute;
+    width:300px;
+    opacity:0;
+
+    filter:
+    drop-shadow(
+        0 15px 20px rgba(0,0,0,.25)
+    );
+
+    transition:
+        opacity 3s ease,
+        transform 3s ease;
+}
+
+.memoryPhoto.show {
+    opacity:1;
+
+    animation:
+    gentleFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes gentleFloat {
+    from {
+        translate:0 0;
+    }
+    to {
+        translate:0 -10px;
+    }
+}
+
+/* ===========================
+POLLEN PARTICLES
+=========================== */
+#particles {
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:5;
+}
+
+
+
+.pollen {
+    position:absolute;
+    bottom:-20px;
+    border-radius:50%;
+    background:
+    rgba(255,220,70,.85);
+
+    box-shadow:
+    0 0 10px rgba(255,220,70,.5);
+
+    animation:
+    float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform:
+        translateY(0)
+        translateX(0);
+        opacity:0;
+    }
+
+    10% {
+        opacity:1;
+    }
+
+    90% {
+        opacity:1;
+    }
+
+    100% {
+        transform:
+        translateY(-110vh)
+        translateX(80px);
+        opacity:0;
+    }
+}
+
+/* ===========================
+MOBILE / TABLET
+=========================== */
+@media(max-width:900px){
+    .typing-demo {
+        font-size:1.5rem;
+    }
+
+    .choices {
+        gap:45px;
+    }
+
+    .memoryPhoto {
+        width:240px;
+    }
+}
+
+@media(max-width:600px){
+    .typing-demo {
+        font-size:1.2rem;
+    }
+
+    .choices {
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .option {
+        justify-content:center;
+    }
+
+    .memoryPhoto {
+        width:200px;
+    }
+}
+
+#finalMessage {
+
+    position:absolute;
+
+    top:15%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:3rem;
+
+    font-family:cursive;
+
+    color:rgba(255, 145, 2, 0.795);
+
+    text-shadow:
+    0 0 10px rgba(255, 230, 0, 0.719);
+
+
+    opacity:0;
+
+    z-index:20;
+
+    user-select:none;
+
+}
+
+
+
+#finalMessage.show {
+
+    animation:
+    messageFadeIn 4s ease forwards;
+
+}
+
+
+
+@keyframes messageFadeIn {
+
+    from {
+
+        opacity:0;
+
+        transform:
+        translateX(-50%)
+        translateY(20px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+        translateX(-50%)
+        translateY(0);
+
+    }
+
+}
